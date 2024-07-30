@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="public/NJ_app.css">
+    <script type="text/javascript" src="modules\NJ_validations.js"></script>
+
+
+</head>
+
+<body>
+    <h1>Author - 991745899, Navrose Singh Johal</h1>
+    <h2>Professor - Sukhbir Tatla</h2>
+    <h1>Welcome to the Currency Conversion Portal</h1>
+    <form method="Post" onsubmit="return true" action="\getResult">
+        <label for="amount">Enter Number:</label>
+        <input type="number" id="amount" name="amount" autofocus><br>
+
+        <label for="currency1">Select currency you have:</label>
+        <select id="currency1" name="currency1">
+            <option value="cad">CAD</option>
+            <option value="franc">Franc</option>
+            <option value="usd">USD</option>
+            <option value="euros">Euros</option>
+            <option value="pound">Pound</option>
+        </select><br>
+
+        <label for="currency2">Select currency you want:</label>
+        <select id="currency2" name="currency2">
+            <option value="cad">CAD</option>
+            <option value="franc">Franc</option>
+            <option value="usd">USD</option>
+            <option value="euros">Euros</option>
+            <option value="pound">Pound</option>
+        </select><br>
+
+        <button type="submit" id="calculateButton" onclick="">Calculate</button>
+        <button type="button" id="clearButton">Clear</button>
+        <script>
+            document.getElementById('clearButton').onclick = () => {
+                document.getElementById('amount').value = "";
+                document.getElementById('currency1').value = -1;
+                document.getElementById('currency2').value = -1;
+                document.getElementById('result').innerHTML = "";
+                document.getElementById('amount').focus();
+            }
+
+        </script>
+    </form>
+    <p id="result">Result will be displayed here</p>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
