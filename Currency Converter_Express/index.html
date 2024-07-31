@@ -38,17 +38,6 @@
         </select><br>
 
         <button type="submit" id="calculateButton" onclick="">Calculate</button>
-        <button type="button" id="clearButton">Clear</button>
-        <script>
-            document.getElementById('clearButton').onclick = () => {
-                document.getElementById('amount').value = "";
-                document.getElementById('currency1').value = -1;
-                document.getElementById('currency2').value = -1;
-                document.getElementById('result').innerHTML = "";
-                document.getElementById('amount').focus();
-            }
-
-        </script>
     </form>
     <p id="result">Result will be displayed here</p>
     <script type="module" src="app.js"></script>
