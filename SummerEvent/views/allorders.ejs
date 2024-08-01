@@ -1,0 +1,61 @@
+<%- include('layouts/header'); -%>
+
+  <body>
+    <%- include('layouts/nav'); -%>
+      <section class="w50">
+        <a href="/logout">Logout</a>
+        <section class="w50">
+          <div class="formData">
+            <table>
+              <thead>
+                <th>Name</th>
+                <th>Email </th>
+                <th>Phone </th>
+                <th>Post Code</th>
+                <th>Lunch</th>
+                <th>=Campus</th>
+                <th>=Sub Total</th>
+                <th>=tax</th>
+                <th>=Total</th>
+              </thead>
+              <tbody>
+                <% orders.forEach((x)=> { %>
+                  <tr>
+                    <td>
+                      <%= x.Name %>
+                    </td>
+                    <td>
+                      <%= x.Email %>
+                    </td>
+                    <td>
+                      <%= x.Phone %>
+                    </td>
+                    <td>
+                      <%= x.PostCode %>
+                    </td>
+                    <td>
+                      <%= x.Lunch %>
+                    </td>
+                    <td>
+                      <%= x.Campus %>
+                    </td>
+                    <td>
+                      <%= x.Tickets %>
+                    </td>
+                    <td>
+                      <%= x.SubTotal %>
+                    </td>
+                    <td>
+                      <%= x.Tax %>
+                    </td>
+                    <td>
+                      <%= x.Total %>
+                    </td>
+                  </tr>
+                  <% }) %>
+
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <%- include('layouts/footer'); -%>

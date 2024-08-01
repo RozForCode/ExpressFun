@@ -1,0 +1,25 @@
+{
+  "name": "summerevent",
+  "version": "1.0.0",
+  "description": "Summer Even Form Submission Application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Summer",
+    "Event",
+    "Form",
+    "Application"
+  ],
+  "author": "admin",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.1.0",
+    "mysql2": "^3.11.0"
+  }
+}
