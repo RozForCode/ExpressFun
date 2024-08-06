@@ -1,10 +1,7 @@
 "use strict";
 const express = require('express'),
-    path = require('path'),
+    // path = require('path'),
     app = express();
-
-
-
 
 app.set("port", 8001);
 app.set("view engine", 'ejs')
@@ -12,6 +9,9 @@ app.set("view engine", 'ejs')
 
 app.get('/', (req, res) => {
     res.render('form');
+})
+app.get('/allorders', (req, res) => {
+    res.render('allOrders');
 })
 
 app.listen(app.get("port"), () => {
