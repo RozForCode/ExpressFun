@@ -3,10 +3,11 @@ const express = require('express'),
     // path = require('path'),
     app = express();
 
+// env set methods 
 app.set("port", 8001);
 app.set("view engine", 'ejs')
 
-
+// get methods
 app.get('/', (req, res) => {
     res.render('form');
 })
@@ -18,6 +19,15 @@ app.post('/submit', (req, res) => {
     const items = ["name", 345825205, "nav@gmail"]
     res.render("receipt", { items })
 })
+
+
+
+
+
+
+
+
+
 app.listen(app.get("port"), () => {
     console.log(`App running on http://localhost:${app.get('port')}`)
 })
