@@ -27,11 +27,25 @@ app.get('/allorders', (req, res) => {
 // validation functions
 
 
+function customPhoneValidation(userinput) {
+    const phoneRegex = /^[0-9]{3}\-?[0-9]{3}\-?[0-9]{4}$/;
+    if (!phoneRegex.test(userinput)) {
+        throw new Error("Please provide valid phone number")
+    }
+    return true;
+}
+
+
+
 
 // validate and process form submission;
 app.post('/submit', [
     check('name').notEmpty().withMessage("name is required"),
-    check('email').isEmail().withMessage('Please enter a valid email.')
+    check('city').notEmpty().withMessage("city is required"),
+    check('province').notEmpty().withMessage("province is required"),
+    check('address').notEmpty().withMessage("address is required"),
+    check('email').isEmail().withMessage('Please enter a valid email.'),
+    check('phone').custom(customPhoneValidation)
 ], (req, res) => {
     const errors = validationResult(req);
     console.log(errors);
@@ -43,7 +57,7 @@ app.post('/submit', [
         }
         res.render('receipt', { items })
     } else {
-        const items = ["name", 345825205, "nav@gmail"]
+        const items = Object.keys(req.body).map(key => (req.body)[key]);
         res.render("receipt", { items })
     }
 })
