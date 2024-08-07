@@ -58,6 +58,9 @@ app.post('/submit', [
         res.render('receipt', { items })
     } else {
         const items = Object.keys(req.body).map(key => (req.body)[key]);
+        items[6] = "No.of hashBrowns " + items[6];
+        items[7] = "No.of Coffee cups " + items[7];
+        items[8] = "No.of Bagels " + items[8];
         res.render("receipt", { items })
     }
 })
