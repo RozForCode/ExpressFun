@@ -14,6 +14,10 @@ app.get('/allorders', (req, res) => {
     res.render('allOrders');
 })
 
+app.post('/submit', (req, res) => {
+    const items = ["name", 345825205, "nav@gmail"]
+    res.render("receipt", { items })
+})
 app.listen(app.get("port"), () => {
     console.log(`App running on http://localhost:${app.get('port')}`)
 })

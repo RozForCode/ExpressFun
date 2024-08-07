@@ -1,0 +1,10 @@
+<%- include("./layout/nav.ejs") -%>
+    <h1>Order Info</h1>
+    <ul>
+        <% for(let i=0 ; i<items.length ; i++) { %>
+
+            <li>
+                <%= items[i] %>
+            </li>
+            <% } %>
+    </ul>
