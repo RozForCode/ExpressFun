@@ -6,6 +6,13 @@ const express = require('express'),
     app = express();
 
 // env set methods 
+/* 
+When you submit a form using the POST method, the form data is encoded as key-value pairs
+ and sent in the body of the request. This encoding is called application/x-www-form-urlencoded.
+Setting urlencoded to true tells body-parser to parse this type of data and convert it
+ into a JavaScript object, which you can then access via req.body
+*/
+app.use(express.urlencoded({ extended: true }))
 app.set("port", 8001);
 app.set("view engine", 'ejs')
 
@@ -27,6 +34,7 @@ app.post('/submit', [
     check('email').isEmail().withMessage('Please enter a valid email.')
 ], (req, res) => {
     const errors = validationResult(req);
+    console.log(errors);
     if (!errors.isEmpty()) {
         let errArr = errors.array();
         const items = [];
@@ -34,12 +42,11 @@ app.post('/submit', [
             items.push(errArr[i].msg)
         }
         res.render('receipt', { items })
+    } else {
+        const items = ["name", 345825205, "nav@gmail"]
+        res.render("receipt", { items })
     }
-    const items = ["name", 345825205, "nav@gmail"]
-    res.render("receipt", { items })
 })
-
-
 
 app.listen(app.get("port"), () => {
     console.log(`App running on http://localhost:${app.get('port')}`)
