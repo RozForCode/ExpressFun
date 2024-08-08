@@ -58,7 +58,12 @@ app.post('/submit', [
         res.render('receipt', { items })
     } else {
         const items = Object.keys(req.body).map(key => (req.body)[key]);
-        items[9] = `Subtotal: ${(Number(items[6]) * 5 + Number(items[7]) * 2 + Number(items[8]) * 3)}`
+        let subtotal = (Number(items[6]) * 5 + Number(items[7]) * 2 + Number(items[8]) * 3);
+        let tax = Number((subtotal * 0.12).toFixed(2));
+
+        items[9] = `Subtotal: ${subtotal}`
+        items[10] = `Tax: ${tax}`
+        items[11] = `Total: ${subtotal + tax}`
         items[6] = "No.of hashBrowns " + items[6];
         items[7] = "No.of Coffee cups " + items[7];
         items[8] = "No.of Bagels " + items[8];
