@@ -4,16 +4,21 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: black;
 }
 
 .container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.783);
+
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container:hover {
+    background-color: white;
 }
 
 h1 {
@@ -24,6 +29,7 @@ h1 {
 .form-group {
     margin-bottom: 15px;
 }
+
 
 .form-group label {
     display: block;
@@ -48,14 +54,41 @@ button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #5cb85c;
+    background-color: aqua;
     border: none;
     border-radius: 4px;
-    color: #fff;
+    color: black;
     font-size: 16px;
     cursor: pointer;
 }
 
+a {
+    color: black;
+}
+
+a:hover {
+    color: aqua;
+}
+
+.navLink:hover {
+    background-color: #333;
+}
+
+.navLink {
+    background-color: aqua;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    border: 2px, 2px, #333;
+}
+
 button:hover {
-    background-color: #4cae4c;
+    background-color: black;
+    color: white
+}
+
+.receiptLI {
+    color: white
 }
