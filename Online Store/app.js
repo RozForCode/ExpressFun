@@ -1,6 +1,7 @@
 "use strict";
 const express = require('express'),
     validator = require('express-validator'),
+    path = require('path'),
     check = validator.check,
     validationResult = validator.validationResult,
     app = express();
@@ -12,6 +13,7 @@ When you submit a form using the POST method, the form data is encoded as key-va
 Setting urlencoded to true tells body-parser to parse this type of data and convert it
  into a JavaScript object, which you can then access via req.body
 */
+app.use(express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({ extended: true }))
 app.set("port", 8001);
 app.set("view engine", 'ejs')
