@@ -1,4 +1,5 @@
 "use strict";
+const mysql2 = require('mysql2');
 // cpanel conn
 // const conn = mysql2.createPool({
 //     user: 'johnavro_johnavro',
@@ -19,7 +20,7 @@ const conn = mysql2.createPool({
     database: "summerevent"
 });
 
-exports.renderIndex((res, req) => {
+exports.renderIndex = ((req, res) => {
     conn.query(`select * from A4_ORDERS`, (err, result) => {
         if (err) console.log(err);
         else {

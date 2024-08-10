@@ -7,6 +7,10 @@ body {
     background-color: black;
 }
 
+.formData {
+    color: white;
+}
+
 .container {
     max-width: 800px;
     margin: 20px auto;
