@@ -2,9 +2,32 @@
 const express = require('express'),
     validator = require('express-validator'),
     path = require('path'),
+    mysql2 = require('mysql2'),
     check = validator.check,
     validationResult = validator.validationResult,
     app = express();
+
+// database configuration
+//cpanel
+// const conn = mysql2.createPool({
+//     user: 'johnavro_johnavro',
+//     connectionLimit: 2,
+//     database: 'johnavro_assignment4',
+//     insecureAuth: true,
+//     password: 'BingoBingo@312',
+//     host: 'localhost'
+// }
+// )
+//local pc
+const conn = mysql2.createPool({
+    connectionLimit: 5,
+    host: "localhost",
+    user: "root",
+    password: "bingo123",
+    insecureAuth: true,
+    database: "summerevent"
+});
+
 
 // env set methods 
 /* 
