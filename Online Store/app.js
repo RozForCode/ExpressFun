@@ -42,33 +42,6 @@ app.use(express.urlencoded({ extended: true }))
 app.set("port", 8001);
 app.set("view engine", 'ejs')
 
-// insert data into database
-function checkTable() {
-    const query = `SHOW TABLES LIKE A4_ORDERS`;
-    conn.query(query, (err, result) => {
-        if (err) {
-            const createQuery = `
-            CREATE TABLE A4_ORDERS (
-            id int auto_increment primary key,
-            name VARCHAR(20),
-            address VARCHAR(40),
-            city VARCHAR(20),
-            province VARCHAR(20),
-            phone int,
-            email VARCHAR(40),
-            HashBrowns int,
-            Bagels int,
-            Coffee int
-            )
-            `;
-            conn.query(createQuery, (err, result) => {
-                if (err) throw err;
-                console.log(`table created successfully`)
-            })
-        }
-    })
-
-}
 
 
 // get methods
@@ -99,6 +72,33 @@ function customOrder(value, { req }) {
 }
 
 
+// insert data into database
+function checkTable() {
+    const query = `SHOW TABLES LIKE A4_ORDERS`;
+    conn.query(query, (err, result) => {
+        if (err) {
+            const createQuery = `
+            CREATE TABLE A4_ORDERS (
+            id int auto_increment primary key,
+            name VARCHAR(20),
+            address VARCHAR(40),
+            city VARCHAR(20),
+            province VARCHAR(20),
+            phone int,
+            email VARCHAR(40),
+            HashBrowns int,
+            Bagels int,
+            Coffee int
+            )
+            `;
+            conn.query(createQuery, (err, result) => {
+                if (err) throw err;
+                console.log(`table created successfully`)
+            })
+        }
+    })
+
+}
 
 
 // validate and process form submission;
@@ -128,6 +128,15 @@ app.post('/submit', [
         items[9] = `Subtotal: ${subtotal}`
         items[10] = `Tax: ${tax}`
         items[11] = `Total: ${subtotal + tax}`
+        checkTable();
+
+        conn.query(`INSERT INTO A4_ORDERS VALUES(?,?,?,?,?,?,?,?,?,?,?);`,
+            [items[1], items[2], items[3], items[4], items[5], items[6], items[7], items[8], items[9], items[10], items[11]],
+            (err, result) => {
+                if (err) console.log(err);
+                else console.log(result);
+            })
+
         items[6] = "No.of hashBrowns " + items[6];
         items[7] = "No.of Coffee cups " + items[7];
         items[8] = "No.of Bagels " + items[8];

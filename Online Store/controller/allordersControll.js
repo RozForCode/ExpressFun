@@ -22,6 +22,9 @@ const conn = mysql2.createPool({
 exports.renderIndex((res, req) => {
     conn.query(`select * from A4_ORDERS`, (err, result) => {
         if (err) console.log(err);
-        else res.render('allorders', { orders: result })
+        else {
+            console.log(result)
+            res.render('allorders', { orders: result })
+        }
     })
 })
