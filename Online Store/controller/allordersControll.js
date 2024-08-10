@@ -7,7 +7,7 @@ const mysql2 = require('mysql2');
 //     database: 'johnavro_A4',
 //     insecureAuth: true,
 //     password: 'BingoBingo@312',
-//     host: 'localhost'
+//     host: '127.0.0.0'
 // }
 // )
 //local pc

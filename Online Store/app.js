@@ -16,7 +16,7 @@ const express = require('express'),
 //     database: 'johnavro_A4',
 //     insecureAuth: true,
 //     password: 'BingoBingo@312',
-//     host: 'localhost'
+//     host: '127.0.0.0'
 // }
 // )
 //local pc
