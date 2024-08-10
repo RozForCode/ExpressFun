@@ -4,6 +4,7 @@ const express = require('express'),
     path = require('path'),
     mysql2 = require('mysql2'),
     check = validator.check,
+    allorders = require('./controller/allordersControll.js'),
     validationResult = validator.validationResult,
     app = express();
 
@@ -12,7 +13,7 @@ const express = require('express'),
 // const conn = mysql2.createPool({
 //     user: 'johnavro_johnavro',
 //     connectionLimit: 2,
-//     database: 'johnavro_assignment4',
+//     database: 'johnavro_A4',
 //     insecureAuth: true,
 //     password: 'BingoBingo@312',
 //     host: 'localhost'
@@ -41,13 +42,43 @@ app.use(express.urlencoded({ extended: true }))
 app.set("port", 8001);
 app.set("view engine", 'ejs')
 
+// insert data into database
+function checkTable() {
+    const query = `SHOW TABLES LIKE A4_ORDERS`;
+    conn.query(query, (err, result) => {
+        if (err) {
+            const createQuery = `
+            CREATE TABLE A4_ORDERS (
+            id int auto_increment primary key,
+            name VARCHAR(20),
+            address VARCHAR(40),
+            city VARCHAR(20),
+            province VARCHAR(20),
+            phone int,
+            email VARCHAR(40),
+            HashBrowns int,
+            Bagels int,
+            Coffee int
+            )
+            `;
+            conn.query(createQuery, (err, result) => {
+                if (err) throw err;
+                console.log(`table created successfully`)
+            })
+        }
+    })
+
+}
+
+
 // get methods
 app.get('/', (req, res) => {
     res.render('form');
 })
-app.get('/allorders', (req, res) => {
-    res.render('allOrders');
-})
+app.get('/allorders', allorders.renderIndex);
+
+
+
 
 // validation functions
 
