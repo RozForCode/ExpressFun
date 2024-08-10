@@ -96,3 +96,76 @@ button:hover {
 .receiptLI {
     color: white
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+thead th {
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px;
+}
+
+/* Specific widths for the columns */
+th:nth-child(1),
+td:nth-child(1) {
+    /* Name */
+    width: 20%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    /* Address */
+    width: 30%;
+}
+
+th:nth-child(3),
+td:nth-child(3),
+/* City */
+th:nth-child(4),
+td:nth-child(4),
+/* Province */
+th:nth-child(5),
+td:nth-child(5),
+/* Phone */
+th:nth-child(6),
+td:nth-child(6) {
+    /* Email */
+    width: 15%;
+}
+
+th:nth-child(7),
+td:nth-child(7),
+/* HashBrowns */
+th:nth-child(8),
+td:nth-child(8),
+/* Bagels */
+th:nth-child(9),
+td:nth-child(9),
+/* Coffee */
+th:nth-child(10),
+td:nth-child(10),
+/* Subtotal */
+th:nth-child(11),
+td:nth-child(11),
+/* Tax */
+th:nth-child(12),
+td:nth-child(12) {
+    /* Total */
+    width: 10%;
+}

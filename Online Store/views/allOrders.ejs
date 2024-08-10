@@ -7,57 +7,72 @@
     <title>Online Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<%- include('./layout/nav.ejs'); -%>
-    <h1>Orders</h1>
-    <div class="formData">
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Email </th>
-                <th>Phone </th>
-                <th>Post Code</th>
-                <th>Lunch</th>
-                <th>=Campus</th>
-                <th>=Sub Total</th>
-                <th>=tax</th>
-                <th>=Total</th>
-            </thead>
-            <tbody>
-                <% orders.forEach((x)=> { %>
-                    <tr>
-                        <td>
-                            <%= x.Name %>
-                        </td>
-                        <td>
-                            <%= x.Email %>
-                        </td>
-                        <td>
-                            <%= x.Phone %>
-                        </td>
-                        <td>
-                            <%= x.PostCode %>
-                        </td>
-                        <td>
-                            <%= x.Lunch %>
-                        </td>
-                        <td>
-                            <%= x.Campus %>
-                        </td>
-                        <td>
-                            <%= x.Tickets %>
-                        </td>
-                        <td>
-                            <%= x.SubTotal %>
-                        </td>
-                        <td>
-                            <%= x.Tax %>
-                        </td>
-                        <td>
-                            <%= x.Total %>
-                        </td>
-                    </tr>
-                    <% }) %>
 
-            </tbody>
-        </table>
-    </div>
+<body>
+    <%- include('./layout/nav.ejs'); -%>
+        <h1>Orders</h1>
+        <div class="formData">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>Province</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>HashBrowns</th>
+                        <th>Bagels</th>
+                        <th>Coffee</th>
+                        <th>Subtotal</th>
+                        <th>Tax</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% orders.forEach((order)=> { %>
+                        <tr>
+                            <td>
+                                <%= order.name %>
+                            </td>
+                            <td>
+                                <%= order.address %>
+                            </td>
+                            <td>
+                                <%= order.city %>
+                            </td>
+                            <td>
+                                <%= order.province %>
+                            </td>
+                            <td>
+                                <%= order.phone %>
+                            </td>
+                            <td>
+                                <%= order.email %>
+                            </td>
+                            <td>
+                                <%= order.HashBrowns %>
+                            </td>
+                            <td>
+                                <%= order.Bagels %>
+                            </td>
+                            <td>
+                                <%= order.Coffee %>
+                            </td>
+                            <td>
+                                <%= order.subtotal %>
+                            </td>
+                            <td>
+                                <%= order.tax %>
+                            </td>
+                            <td>
+                                <%= order.total %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+</body>
+
+</html>

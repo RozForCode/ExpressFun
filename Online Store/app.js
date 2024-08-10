@@ -74,9 +74,10 @@ function customOrder(value, { req }) {
 
 // insert data into database
 function checkTable() {
-    const query = `SHOW TABLES LIKE A4_ORDERS`;
+    const query = `SHOW TABLES LIKE 'A4_ORDERS'`;
     conn.query(query, (err, result) => {
-        if (err) {
+        if (err) console.log(err);
+        if (result.length == 0) {
             const createQuery = `
             CREATE TABLE A4_ORDERS (
             id int auto_increment primary key,
@@ -84,11 +85,14 @@ function checkTable() {
             address VARCHAR(40),
             city VARCHAR(20),
             province VARCHAR(20),
-            phone int,
+            phone VARCHAR(12),
             email VARCHAR(40),
             HashBrowns int,
             Bagels int,
-            Coffee int
+            Coffee int,
+            subtotal int,
+            tax int,
+            total int
             )
             `;
             conn.query(createQuery, (err, result) => {
@@ -99,6 +103,7 @@ function checkTable() {
     })
 
 }
+checkTable();
 
 
 // validate and process form submission;
@@ -130,8 +135,8 @@ app.post('/submit', [
         items[11] = `Total: ${subtotal + tax}`
         checkTable();
 
-        conn.query(`INSERT INTO A4_ORDERS VALUES(?,?,?,?,?,?,?,?,?,?,?);`,
-            [items[1], items[2], items[3], items[4], items[5], items[6], items[7], items[8], items[9], items[10], items[11]],
+        conn.query(`INSERT INTO A4_ORDERS(name, address, city, province, phone, email, HashBrowns, Bagels, Coffee,subtotal,tax,total) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);`,
+            [items[0], items[1], items[2], items[3], Number(items[4]), items[5], items[6], items[7], items[8], subtotal, tax, (subtotal + tax)],
             (err, result) => {
                 if (err) console.log(err);
                 else console.log(result);
@@ -146,4 +151,4 @@ app.post('/submit', [
 
 app.listen(app.get("port"), () => {
     console.log(`App running on http://localhost:${app.get('port')}`)
-}) 
+})  
