@@ -36,6 +36,13 @@ function customPhoneValidation(userinput) {
     }
     return true;
 }
+function customOrder(value, { req }) {
+    const { HashBrown, Bagel, Coffee } = req.body;
+    if (HashBrown == 0 && Bagel == 0 && Coffee == 0) {
+        throw new Error("You don't have any item selected.")
+    }
+    return true;
+}
 
 
 
@@ -47,7 +54,8 @@ app.post('/submit', [
     check('province').notEmpty().withMessage("province is required"),
     check('address').notEmpty().withMessage("address is required"),
     check('email').isEmail().withMessage('Please enter a valid email.'),
-    check('phone').custom(customPhoneValidation)
+    check('phone').custom(customPhoneValidation),
+    check('HashBrown').custom(customOrder)
 ], (req, res) => {
     const errors = validationResult(req);
     console.log(errors);
