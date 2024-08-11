@@ -10,24 +10,24 @@ const express = require('express'),
 
 // database configuration
 //cpanel
-// const conn = mysql2.createPool({
-//     user: 'johnavro_johnavro',
-//     connectionLimit: 2,
-//     database: 'johnavro_A4',
-//     insecureAuth: true,
-//     password: 'BingoBingo@312',
-//     host: '127.0.0.0'
-// }
-// )
-//local pc
 const conn = mysql2.createPool({
-    connectionLimit: 5,
-    host: "localhost",
-    user: "root",
-    password: "bingo123",
+    user: 'johnavro_johnavro',
+    connectionLimit: 2,
+    database: 'johnavro_A4',
     insecureAuth: true,
-    database: "summerevent"
-});
+    password: 'BingoBingo@312',
+    host: '127.0.0.0'
+}
+)
+//local pc
+// const conn = mysql2.createPool({
+//     connectionLimit: 5,
+//     host: "localhost",
+//     user: "root",
+//     password: "bingo123",
+//     insecureAuth: true,
+//     database: "summerevent"
+// });
 
 
 // env set methods 
@@ -103,8 +103,27 @@ function checkTable() {
     })
 
 }
-checkTable();
 
+checkTable();
+function getTaxRate(province) {
+    const taxRates = {
+        'Alberta': 0.14,
+        'BritishColumbia': 0.2,
+        'Manitoba': 0.10,
+        'NewBrunswick': 0.15,
+        'NewfoundlandandLabrador': 0.16,
+        'NorthwestTerritories': 0.21,
+        'NovaScotia': 0.11,
+        'Nunavut': 0.08,
+        'Ontario': 0.17,
+        'PrinceEdwardIsland': 0.14,
+        'Quebec': 0.20,
+        'Saskatchewan': 0.11,
+        'Yukon': 0.18
+    };
+
+    return taxRates[province] || 0.11;
+}
 
 // validate and process form submission;
 app.post('/submit', [
@@ -131,7 +150,7 @@ app.post('/submit', [
         let tax = Number((subtotal * 0.12).toFixed(2));
 
         items[9] = `Subtotal: ${subtotal}`
-        items[10] = `Tax: ${tax}`
+        items[10] = `Tax: ${getTaxRate(items[3])}`
         items[11] = `Total: ${subtotal + tax}`
         checkTable();
 
