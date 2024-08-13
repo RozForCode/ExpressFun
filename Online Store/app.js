@@ -16,7 +16,7 @@ const conn = mysql2.createPool({
     database: 'johnavro_A4',
     insecureAuth: true,
     password: 'BingoBingo@312',
-    host: '127.0.0.0'
+    host: '127.0.0.1'
 }
 )
 //local pc
@@ -28,7 +28,6 @@ const conn = mysql2.createPool({
 //     insecureAuth: true,
 //     database: "summerevent"
 // });
-
 
 // env set methods 
 /* 
